@@ -23,11 +23,17 @@ class StoreResource extends Resource
     {
         return $form->columns(1)
             ->schema([
-                Forms\Components\Textarea::make('name'),
-                Forms\Components\Textarea::make('phone'),
-                Forms\Components\RichEditor::make('about'),
-                Forms\Components\Textarea::make('slug'),
-                Forms\Components\Textarea::make('logo'),
+                Forms\Components\Textarea::make('name')->required(),
+                Forms\Components\Textarea::make('phone')->required(),
+                Forms\Components\RichEditor::make('about')
+                    ->required(), // nir com as validações do você pode usar  ->rules([]) para defilaravel
+                Forms\Components\Textarea::make('slug')->required(),
+                Forms\Components\FileUpload::make('logo')
+                    ->directory('stores')
+                    ->disk('public') //direcionando para public dentro de storage
+                    ->image() ,
+
+
             ]);
     }
 

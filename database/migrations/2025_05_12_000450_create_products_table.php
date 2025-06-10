@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('store_id');
             $table->string('name');
+            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
